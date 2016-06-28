@@ -5,18 +5,13 @@
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/prism.css"  />
 	<link rel="stylesheet" href="css/codemirror.css"  />
-
-	<title>Técnicas de programação para Games - Aula 1</title>
-	<style>
-		#codeinput {
-			font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
-		}
-	</style>
+	<title>Técnicas de programação para Games - Aula 1 - Desenhando via programação usando Processing</title>
 </head>
 <body>
 <div class="container">
-	<h1>Aula 1</h1>
+	<h1>Aula 1 - Desenhando com Processing e Javascript</h1>
 	<section>
+		<h2>Laboratório</h2>
 		<div class="row">
 			<div class="col-md-5">
 				<div class="form-group">
@@ -35,57 +30,65 @@ ellipse(180,150,100,80);</textarea>
 		</div>
 	</section>
 
+<!--
+	<section>
+		<h2>Conceitos</h2>
+		<dl class="dl-horizontal">
+  			<dt>Comandos</dt>
+  			<dd>...</dd>
+  			<dt>Javascript</dt>
+  			<dd>...</dd>
+  			<dt>Comentário</dt>
+  			<dd>...</dd>
+  			<dt>Parâmetros</dt>
+  			<dd>...</dd>
+		</dl>
+	</section>-->
 
 	<section>
 		<h2>Comandos Processing JS</h2>
 		<div class="row">
-			<ul class="list-unstyled col-md-4">
-				<li><code>arc(x, y, width, height, start, stop)</code>
-				<li><code>ellipse(x, y, width, height)</code></li>
-				<li><code>line(x1, y1, x2, y2)</code></li>
-				<li><code>point(x, y)</code></li>
-				<li><code>quad(x1, y1, x2, y2, x3, y3, x4, y4)</code></li>
-				<li><code>rect(x, y, width, height)</code></li>
-				<li><code>rect(x, y, width, height, radius)</code></li>
-				<li><code>triangle(x1, y1, x2, y2, x3, y3)</code></li>
-			</ul>
-			<ul class="list-unstyled col-md-4">
-				<li><code>background(gray)</code></li>
-				<li><code>background(gray, alpha)</code></li>
-				<li><code>background(value1, value2, value3)</code></li>
-				<li><code>background(value1, value2, value3, alpha)</code></li>
-				<li><code>background(color)</code></li>
-				<li><code>background(color, alpha)</code></li>
-				<li><code>background(hex)</code></li>
-				<li><code>background(hex)</code></li>
-				<li><code>background(hex, alpha)</code></li>
-				<li><code>fill(*)</code></li>
-				<li><code>stroke(*)</code></li>
-				<li><code>noFill()</code></li>
-				<li><code>noStroke()</code></li>
-			</ul>
-			<ul class="list-unstyled col-md-4">
-				<li><code>text(data, x, y)</code></li>
-				<li><code>text(data, x, y, z)</code></li>
-				<li><code>text(stringdata, x, y, width, height)</code></li>
-				<li><code>text(stringdata, x, y, width, height, z)</code></li>
-				<li><code>loadFont(fontname)</code></li>
-				<li><code>textFont(font)</code></li>
-				<li><code>textFont(font, size)</code></li>
-			</ul>
-		</div>
-<!--
-		<ul class="list-unstyled">
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-			<li><code></code></li>
-		</ul>
--->
+			<div class="col-md-4">
+				<pre><code class="language-javascript autoprism">//primitivas 2D
+arc(x, y, width, height, start, stop)
+ellipse(x, y, width, height)
+line(x1, y1, x2, y2)
+point(x, y)
+quad(x1, y1, x2, y2, x3, y3, x4, y4)
+rect(x, y, width, height)
+rect(x, y, width, height, radius)
+triangle(x1, y1, x2, y2, x3, y3)
+</code></pre>
+			</div>
+			<div class="col-md-4">
+				<pre><code class="language-javascript autoprism">//cores
+background(gray)
+background(gray, alpha)
+background(value1, value2, value3)
+background(value1, value2, value3, alpha)
+background(color)
+background(color, alpha)
+background(hex)
+background(hex)
+background(hex, alpha)
+fill(*)
+stroke(*)
+noFill()
+noStroke()
+strokeWeight(width)
+</code></pre>
+			</div>
+			<div class="col-md-4">
+				<pre><code class="language-javascript autoprism">//texto
+text(data, x, y)
+text(data, x, y, z)
+text(stringdata, x, y, width, height)
+text(stringdata, x, y, width, height, z)
+loadFont(fontname)
+textFont(font)
+textFont(font, size)
+</code></pre>
+			</div>
 	</section>
 
 	<section>
@@ -95,37 +98,36 @@ ellipse(180,150,100,80);</textarea>
 				<pre><code class="language-javascript">size(360,300);
 rect(150,150,50,50);    //desenha retângulo
 ellipse(150,150,50,50); //desenha elipse
-line(200, 250, 300, 200);//linha
-
-
-</code></pre>
-				<canvas></canvas>
-			</div>
-			<div class="col-md-4 example">
-				<pre><code class="language-javascript">size(360,300);
-rect(150,150,50,50);   //desenha retângulo
-fill(0, 255, 0);       //preench. - verde
-stroke(255, 0, 255);   //linha - rosa
-ellipse(150,150,50,50);//desenha elipse
+strokeWeight(3);        //muda grossura linha
+line(200,250,300,200);  //linha
 
 </code></pre>
 				<canvas></canvas>
 			</div>
 			<div class="col-md-4 example">
 				<pre><code class="language-javascript">size(360,300);
-fill(255, 255, 0);     //preench. - amarelo
-stroke(255, 0, 0);     //linha - vermelho
-ellipse(150,150,50,50);//desenha elipse
-stroke(0, 0, 0);       //linha - preto
-rect(150,150,50,50);   //desenha retângulo
+fill(255, 255, 0);       //preench. - amarelo
+stroke(255, 0, 0);       //linha - vermelho
+ellipse(150,150,150,150);//desenha elipse
+fill(0, 0, 0);           //preench. - preto
+ellipse(150,150,50,100); //desenha elipse
 </code></pre>
 				<canvas></canvas>
 			</div>
-
+			<div class="col-md-4 example">
+				<pre><code class="language-javascript">size(360,300);
+//escrever "100, 50" na posição (100, 50)
+text('100, 50', 100, 50);
+fill(0,0,0);  //preenchimento preto
+//escrever "50, 100" na posição (50, 100)
+text('50, 100', 50, 100);
+</code></pre>
+				<canvas></canvas>
+			</div>
 		</div>
 	</section>
 	<section>		
-		<h2>Desafios</h2>
+		<h2>Exercícios</h2>
 		<div class="row">
 			<div class="col-md-4 example">
 				<pre class="hidden"><code class="language-javascript ">size(360,300);
@@ -138,6 +140,47 @@ line(120, 170, 180, 170);
 </code></pre>
 				<canvas></canvas>
 			</div>
+			
+			<div class="col-md-4 example">
+				<pre class="hidden"><code class="language-javascript ">size(360,300);
+background(180,200,255);
+fill(0,100,0);
+rect(0,180,360,300);
+fill(255,255,255);
+ellipse(180,220,120,120);
+ellipse(180,130,100,100);
+ellipse(180,60,80,80);
+fill(0,0,0);
+ellipse(160,50,5,5);
+ellipse(200,50,5,5);
+ellipse(180,80,15,10);
+fill(255,50,0);
+ellipse(180,60,15,15);
+</code></pre>
+				<canvas></canvas>
+			</div>
+
+			<div class="col-md-4 example">
+				<pre class="hidden"><code class="language-javascript ">size(360,300);
+strokeWeight(4);
+stroke(0,0,0);
+fill(255, 255, 0);     
+ellipse(180,150,150,150);
+
+noFill();
+stroke(0,0,0);
+arc(180, 160, 50, 50, 0, 3.14);
+
+noStroke();
+fill(0, 0, 0);
+ellipse(130,140,15,15);
+ellipse(230,140,15,15);
+
+text('Hello', 160, 50);
+</code></pre>
+				<canvas></canvas>
+			</div>
+			
 		</div>
 	</section>
 
@@ -145,6 +188,7 @@ line(120, 170, 180, 170);
 	<section>
 		<h2>Referência</h2>
 		<ul>
+			<li><a href="https://pt.khanacademy.org/computing/computer-programming/programming/drawing-basics/p/making-drawings-with-code">Desenhando com código (Khan Academy)</a></li>
 			<li><a href="http://processingjs.org/reference/">ProcessingJS - Reference</a></li>
 		</ul>
 	</section>
@@ -205,6 +249,10 @@ line(120, 170, 180, 170);
 			var code = $(this).find('code').html(); 
 			Prism.highlightElement($(this).find('code')[0], false);
 			new Processing($(this).find('canvas')[0], code);
+		});
+
+		$('.autoprism').each(function() {
+			Prism.highlightElement(this);
 		});
 	});
 </script>
