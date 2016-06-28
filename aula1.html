@@ -9,7 +9,18 @@
 </head>
 <body>
 <div class="container">
-	<h1>Aula 1 - Desenhando com Processing e Javascript</h1>
+	<h1>Aula 1 - Desenhando com Processing e JavaScript</h1>
+	<section>
+		<div class="well">
+			<label>Objetivos</label>
+			<ul>
+				<li>Familiarizar-se com a linguagem JavaScript</li>
+				<li>Conhecer alguns comandos de desenho do ProcessingJS</li>
+				<li>Aprender a consultar a documentação do ProcessingJS</li>
+			</ul>
+		</div>
+	</section>
+
 	<section>
 		<h2>Laboratório</h2>
 		<div class="row">
@@ -56,7 +67,6 @@ line(x1, y1, x2, y2)
 point(x, y)
 quad(x1, y1, x2, y2, x3, y3, x4, y4)
 rect(x, y, width, height)
-rect(x, y, width, height, radius)
 triangle(x1, y1, x2, y2, x3, y3)
 </code></pre>
 			</div>
@@ -73,20 +83,20 @@ background(hex)
 background(hex, alpha)
 fill(*)
 stroke(*)
-noFill()
-noStroke()
-strokeWeight(width)
 </code></pre>
 			</div>
 			<div class="col-md-4">
 				<pre><code class="language-javascript autoprism">//texto
 text(data, x, y)
-text(data, x, y, z)
 text(stringdata, x, y, width, height)
-text(stringdata, x, y, width, height, z)
 loadFont(fontname)
 textFont(font)
 textFont(font, size)
+
+// controle de preenchimento/linha
+noFill()
+noStroke()
+strokeWeight(width)
 </code></pre>
 			</div>
 	</section>
@@ -96,16 +106,19 @@ textFont(font, size)
 		<div class="row">
 			<div class="col-md-4 example">
 				<pre><code class="language-javascript">size(360,300);
+// esta linha é ignorada pelo programa!
+// <- as duas barras iniciam o comentário
+// dura até o fim da linha
 rect(150,150,50,50);    //desenha retângulo
-ellipse(150,150,50,50); //desenha elipse
 strokeWeight(3);        //muda grossura linha
-line(200,250,300,200);  //linha
-
-</code></pre>
+ellipse(150,150,50,50); //desenha elipse
+line(200,250,300,200);  //linha</code></pre>
 				<canvas></canvas>
 			</div>
 			<div class="col-md-4 example">
-				<pre><code class="language-javascript">size(360,300);
+				<pre><code class="language-javascript">//não esqueça do ponto-e-vírgula
+//após cada comando 
+size(360,300);     // largura=360, altura=300
 fill(255, 255, 0);       //preench. - amarelo
 stroke(255, 0, 0);       //linha - vermelho
 ellipse(150,150,150,150);//desenha elipse
@@ -116,11 +129,13 @@ ellipse(150,150,50,100); //desenha elipse
 			</div>
 			<div class="col-md-4 example">
 				<pre><code class="language-javascript">size(360,300);
+//aspas simples iniciam e terminam uma string
 //escrever "100, 50" na posição (100, 50)
 text('100, 50', 100, 50);
 fill(0,0,0);  //preenchimento preto
 //escrever "50, 100" na posição (50, 100)
 text('50, 100', 50, 100);
+
 </code></pre>
 				<canvas></canvas>
 			</div>
@@ -145,7 +160,7 @@ line(120, 170, 180, 170);
 				<pre class="hidden"><code class="language-javascript ">size(360,300);
 background(180,200,255);
 fill(0,100,0);
-rect(0,180,360,300);
+rect(0,180,359,119);
 fill(255,255,255);
 ellipse(180,220,120,120);
 ellipse(180,130,100,100);
