@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/prism.css"  />
+
+	<title>Aula</title>
+	<style>
+		#codeinput {
+			font-family: Menlo,Monaco,Consolas,"Courier New",monospace;
+		}
+	</style>
+</head>
+<body>
+<div class="container">
+	<h1>Aula 1</h1>
+	<section>
+		<div class="row">
+			<div class="col-md-5">
+				<div class="form-group">
+					<label>Código-fonte</label>
+					<textarea id="codeinput" class="form-control" rows="15">
+size(500,350);
+ellipse(300,200,100,80);</textarea>
+				</div>
+				<div class="form-group">
+					<button id="compileButton" class="btn btn-primary">Executar</button>
+					<a href="http://processingjs.org/reference/" class="btn btn-default">Referência</a>
+				</div>
+				<div id="messagecontainer" class="alert alert-danger " style="display:none;"></div>
+
+			</div>
+			<div class="col-md-7">
+				<canvas id="drawingcanvas"></canvas>
+			</div>
+		</div>
+	</section>
+
+
+	<section>
+		<div class="row">
+			<ul class="list-unstyled col-lg-4">
+				<li><code>arc(x, y, width, height, start, stop)</code>
+				<li><code>ellipse(x, y, width, height)</code></li>
+				<li><code>line(x1, y1, x2, y2)</code></li>
+				<li><code>point(x, y)</code></li>
+				<li><code>quad(x1, y1, x2, y2, x3, y3, x4, y4)</code></li>
+				<li><code>rect(x, y, width, height)</code></li>
+				<li><code>rect(x, y, width, height, radius)</code></li>
+				<li><code>rect(x, y, width, height, tlradius, trradius, brradius, blradius)</code></li>
+				<li><code>triangle(x1, y1, x2, y2, x3, y3)</code></li>
+			</ul>
+			<ul class="list-unstyled col-lg-4">
+				<li><code>background(gray)</code></li>
+				<li><code>background(gray, alpha)</code></li>
+				<li><code>background(value1, value2, value3)</code></li>
+				<li><code>background(value1, value2, value3, alpha)</code></li>
+				<li><code>background(color)</code></li>
+				<li><code>background(color, alpha)</code></li>
+				<li><code>background(hex)</code></li>
+				<li><code>background(hex)</code></li>
+				<li><code>background(hex, alpha)</code></li>
+				<li><code>fill(*)</code></li>
+				<li><code>stroke(*)</code></li>
+				<li><code>noFill()</code></li>
+				<li><code>noStroke()</code></li>
+			</ul>
+			<ul class="list-unstyled col-lg-4">
+				<li><code>text(data, x, y)</code></li>
+				<li><code>text(data, x, y, z)</code></li>
+				<li><code>text(stringdata, x, y, width, height)</code></li>
+				<li><code>text(stringdata, x, y, width, height, z)</code></li>
+				<li><code>loadFont(fontname)</code></li>
+				<li><code>textFont(font)</code></li>
+				<li><code>textFont(font, size)</code></li>
+			</ul>
+		</div>
+<!--
+		<ul class="list-unstyled">
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+			<li><code></code></li>
+		</ul>
+-->
+	</section>
+
+</div>
+
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/prism.js" data-manual></script>
+<script src="js/processing.min.js"></script>
+<script type="text/javascript">
+	//Variáveis globaix
+	var processingInstance;
+
+	$(document).on('click', '#compileButton', function(evt) {
+		//limpa e esconde mensagem de erro
+		$('#messagecontainer').html('').hide();
+
+		//interrompe processing anterior
+		try {
+			processingInstance.exit();
+		} catch(err) {}
+
+		//limpa o canvas
+		try {
+			var canvas = $('#drawingcanvas')[0];
+			canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+		} catch(err) {}
+
+		var processingCode = $('#codeinput').val();
+		var compilation;
+		try {
+			compilation = Processing.compile(processingCode);
+		} catch (err) {
+			$('#messagecontainer').show().html('Erro de sintaxe do programa');
+			return;
+		}
+		try {
+			processingInstance = new Processing($('#drawingcanvas')[0], compilation);
+		} catch(err) {
+			$('#messagecontainer').show().html('Erro no programa: ' + err.description);
+			return;
+		}
+
+	});
+</script>
+</body>
+</html>
