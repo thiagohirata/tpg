@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/prism.css"  />
+	<link rel="stylesheet" href="css/codemirror.css"  />
+	<title>Dodge Ball</title>
+</head>
+<body>
+<div class="container">
+	<canvas id="gamecanvas"></canvas>
+</div>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/processing.min.js"></script>
+<script src="js/gameengine1.js"></script>
+<script type="text/javascript">
+	//configuração da engine
+	var engineFps = 60;
+
+
+	//modelo
+	var stageSize = [200, 200];
+	var player;
+	var loopCount = 0;
+	var enemies;
+
+
+	function gameSetup() {
+		player = {
+			position: [100, 100],
+			speed:    [0, 0],
+			radius:   5,
+			accel:    [0.05, 0.05],
+			active:   true,
+			points:   0,
+			growth:   0.005
+		};
+		enemies = [ {
+			position: [20, 20],
+			speed:    [1, 1.5],
+			radius:   5,
+			growth:   0.002
+			
+		},
+		{
+			position: [180, 180],
+			speed:    [1.2, 0.5],
+			radius:   5,
+			growth:   0.007
+			
+		},
+		{
+			position: [180, 20],
+			speed:    [-0.8, 0.5],
+			radius:   10,
+			growth:   0.001
+			
+		}
+		 ];
+	}
+	function gameLoop() {
+		loopCount++;
+
+		//atualiza posição do jogador de acordo com a velocidade
+		if(player.active) {
+			player.points ++;
+			//aumenta o tamanho
+			player.radius += player.growth;
+			for(i = 0; i <= 1; i++) {
+				player.position[i] += player.speed[i];
+				if(player.position[i] - player.radius < 0) {
+					player.position[i] = player.radius;
+					player.speed[i] *= -1;
+				}
+				if(player.position[i] + player.radius > stageSize[i])  {
+					player.position[i] = stageSize[i] - player.radius;
+					player.speed[i] *= -1;
+				}	
+			}
+		}
+
+		//atualiza posição dos inimigos
+		for(eidx = 0; eidx < enemies.length; eidx++) {
+			var enemy = enemies[eidx];
+			//aumenta o tamanho
+			enemy.radius += enemy.growth;
+			for(i = 0; i <= 1; i++) {
+				enemy.position[i] += enemy.speed[i];
+				if(enemy.position[i] - enemy.radius < 0) {
+					enemy.position[i] = enemy.radius;
+					enemy.speed[i] *= -1;
+				}
+				if(enemy.position[i] + enemy.radius > stageSize[i])  {
+					enemy.position[i] = stageSize[i] - enemy.radius;
+					enemy.speed[i] *= -1;
+				}
+
+			}
+		}
+
+		//checa por colisões
+		for(eidx = 0; eidx < enemies.length; eidx++) {
+			var enemy = enemies[eidx];
+			//distancia entre inimigo e player
+			var distance = Math.pow((enemy.position[0] - player.position[0]), 2) +  Math.pow((enemy.position[1] - player.position[1]), 2);
+			distance = Math.sqrt(distance);
+
+			if(distance < enemy.radius + player.radius) {
+				player.active = false;
+			}  
+		}
+
+		//atualiza a velocidade do jogador de acordo com o input
+		if(Input.up) {
+			player.speed[1] -= player.accel[1];
+		}
+		if(Input.down) {
+			player.speed[1] += player.accel[1];
+		}
+		if(Input.left) {
+			player.speed[0] -= player.accel[0];
+		}
+		if(Input.right) {
+			player.speed[0] += player.accel[0];
+		}
+		if(Input.space) {
+			player.speed[0] *= 0.94;
+			player.speed[1] *= 0.94;
+		}
+
+
+	};
+</script>
+<script type="application/processing" data-processing-target="gamecanvas">
+//view
+var bgColor = #000000;
+var playerColor = #ffffff;
+var enemyColor = #ff0000;
+var scoreColor = #ffff00;
+void setup() {
+   size(stageSize[0], stageSize[1]);
+   background(bgColor);
+   noStroke();
+}
+void draw() {
+	fill(bgColor);
+	rect(0,0,width,height);
+	//desenhar jogador
+	fill(playerColor);
+	if(player.active) {
+		ellipse(player.position[0], player.position[1], player.radius * 2, player.radius * 2);
+	}
+
+	//desenhar inimigos
+	fill(enemyColor);
+	for(eidx = 0; eidx < enemies.length; eidx++) {
+		var enemy = enemies[eidx];
+		ellipse(enemy.position[0], enemy.position[1], enemy.radius * 2, enemy.radius * 2);
+	}
+
+	//desenhar score
+	fill(scoreColor);
+	text(player.points, 5,15);
+
+}
+</script>
+</body>
+</html>

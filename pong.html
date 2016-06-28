@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/prism.css"  />
+	<link rel="stylesheet" href="css/codemirror.css"  />
+	<title>Dodge Ball</title>
+</head>
+<body>
+<div class="container">
+	<canvas id="gamecanvas"></canvas>
+</div>
+<script src="js/jquery-3.0.0.min.js"></script>
+<script src="js/processing.min.js"></script>
+<script src="js/gameengine1.js"></script>
+<script type="text/javascript">
+	//configuração da engine
+	var engineFps = 60;
+
+	//modelo
+	var stageSize = [200, 200];
+	var player;
+	var ball;
+	var loopCount = 0;
+
+	function gameSetup() {
+		player = {
+			position: [100, 180],
+			speed:    [0, 0],
+			size:     [20, 2],
+			active:   true,
+			points:   0,
+		};
+		ball = {
+			position: [100, 100],
+			speed:    [5, 5],
+			radius:   5
+		};
+	}
+	function gameLoop() {
+		loopCount++;
+
+		//atualiza posição do jogador de acordo com a velocidade
+		if(player.active) {
+			player.points ++;
+			//aumenta o tamanho
+			player.radius += player.growth;
+			var i = 0;
+			player.position[i] += player.speed[i];
+			if(player.position[i] - player.size[i]/2 < 0) {
+				player.position[i] = player.size[i]/2;
+				player.speed[i] *= 0;
+			}
+			if(player.position[i] + player.size[i]/2 > stageSize[i])  {
+				player.position[i] = stageSize[i] - player.size[i]/2;
+				player.speed[i] *= 0;
+			}	
+		}
+
+		//atualiza a velocidade do jogador de acordo com o input
+		if(Input.left) {
+			player.speed[0] = -10;
+		} else if(Input.right) {
+			player.speed[0] = 10;
+		} else {
+			player.speed[0] = 0;
+		}
+
+
+	};
+</script>
+<script type="application/processing" data-processing-target="gamecanvas">
+//view
+var bgColor = #000000;
+var playerColor = #ffffff;
+var enemyColor = #ff0000;
+var scoreColor = #ffff00;
+void setup() {
+   size(stageSize[0], stageSize[1]);
+   background(bgColor);
+   noStroke();
+}
+void draw() {
+	fill(bgColor);
+	rect(0,0,width,height);
+	//desenhar jogador
+	fill(playerColor);
+	if(player.active) {
+		rect(player.position[0] - player.size[0]/2, player.position[1] - player.size[1]/2, player.size[0], player.size[1]);
+	}
+	//desenhar score
+	fill(scoreColor);
+	text(player.points, 5,15);
+
+}
+</script>
+</body>
+</html>

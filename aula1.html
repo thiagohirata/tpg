@@ -14,7 +14,7 @@
 		<div class="well">
 			<label>Objetivos</label>
 			<ul>
-				<li>Familiarizar-se com a linguagem JavaScript</li>
+				<li>Familiarizar-se com a sintaxe da linguagem JavaScript</li>
 				<li>Conhecer alguns comandos de desenho do ProcessingJS</li>
 				<li>Aprender a consultar a documentação do ProcessingJS</li>
 			</ul>
@@ -26,7 +26,7 @@
 		<div class="row">
 			<div class="col-md-5">
 				<div class="form-group">
-					<textarea id="codeinput" class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+					<textarea id="codeinput" class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" codeid="aula1">
 size(360,300);
 ellipse(180,150,100,80);</textarea>
 				</div>
@@ -74,8 +74,8 @@ triangle(x1, y1, x2, y2, x3, y3)
 				<pre><code class="language-javascript autoprism">//cores
 background(gray)
 background(gray, alpha)
-background(value1, value2, value3)
-background(value1, value2, value3, alpha)
+background(red, green, blue)
+background(red, green, blue, alpha)
 background(color)
 background(color, alpha)
 background(hex)
@@ -142,7 +142,7 @@ text('50, 100', 50, 100);
 		</div>
 	</section>
 	<section>		
-		<h2>Exercícios</h2>
+		<h2>Exercícios - Escreva o código que tenha a mesma saída</h2>
 		<div class="row">
 			<div class="col-md-4 example">
 				<pre class="hidden"><code class="language-javascript ">size(360,300);
@@ -205,6 +205,8 @@ text('Hello', 160, 50);
 		<ul>
 			<li><a href="https://pt.khanacademy.org/computing/computer-programming/programming/drawing-basics/p/making-drawings-with-code">Desenhando com código (Khan Academy)</a></li>
 			<li><a href="http://processingjs.org/reference/">ProcessingJS - Reference</a></li>
+			<li><a href="http://www.w3schools.com/js/js_syntax.asp">JavaScript Syntax (W3Schools)</a></li>
+			
 		</ul>
 	</section>
 
@@ -215,61 +217,6 @@ text('Hello', 160, 50);
 <script src="js/processing.min.js"></script>
 <script src="js/codemirror.js"></script>
 <script src="js/codemirror/mode/javascript/javascript.js"></script>
-<script type="text/javascript">
-	//Variáveis globais
-	var processingInstance;
-	var codemirror;
-
-	$(document).on('click', '#compileButton', function(evt) {
-		//limpa e esconde mensagem de erro
-		$('#messagecontainer').html('').hide();
-
-		//interrompe processing anterior
-		try {
-			processingInstance.exit();
-		} catch(err) {}
-
-		//limpa o canvas
-		try {
-			var canvas = $('#drawingcanvas')[0];
-			canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
-		} catch(err) {}
-
-		var processingCode = codemirror.getValue();
-		var compilation;
-		try {
-			compilation = Processing.compile(processingCode);
-		} catch (err) {
-			$('#messagecontainer').show().html('Erro de sintaxe do programa');
-			return;
-		}
-		try {
-			processingInstance = new Processing($('#drawingcanvas')[0], compilation);
-		} catch(err) {
-			$('#messagecontainer').show().html('Erro no programa: ' + err.description);
-			return;
-		}
-	});
-
-	$(function() {
-		//inicia editor CodeMirror
-		codemirror = CodeMirror.fromTextArea($('#codeinput')[0], {
-    		lineNumbers: true,
-			dragDrop: false,
-			autofocus: true
-		});
-
-		//carrega exemplos
-		$('.example').each(function() {
-			var code = $(this).find('code').html(); 
-			Prism.highlightElement($(this).find('code')[0], false);
-			new Processing($(this).find('canvas')[0], code);
-		});
-
-		$('.autoprism').each(function() {
-			Prism.highlightElement(this);
-		});
-	});
-</script>
+<script src="js/laboratorio.js"></script>
 </body>
 </html>
