@@ -4,6 +4,7 @@
 	<meta charset="UTF-8">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/prism.css"  />
+	<link rel="stylesheet" href="css/codemirror.css"  />
 
 	<title>Técnicas de programação para Games - Aula 1</title>
 	<style>
@@ -153,9 +154,12 @@ line(120, 170, 180, 170);
 <script src="js/jquery-3.0.0.min.js"></script>
 <script src="js/prism.js" data-manual></script>
 <script src="js/processing.min.js"></script>
+<script src="js/codemirror.js"></script>
+<script src="js/codemirror/mode/javascript/javascript.js"></script>
 <script type="text/javascript">
 	//Variáveis globais
 	var processingInstance;
+	var codemirror;
 
 	$(document).on('click', '#compileButton', function(evt) {
 		//limpa e esconde mensagem de erro
@@ -172,7 +176,7 @@ line(120, 170, 180, 170);
 			canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
 		} catch(err) {}
 
-		var processingCode = $('#codeinput').val();
+		var processingCode = codemirror.getValue();
 		var compilation;
 		try {
 			compilation = Processing.compile(processingCode);
@@ -189,6 +193,14 @@ line(120, 170, 180, 170);
 	});
 
 	$(function() {
+		//inicia editor CodeMirror
+		codemirror = CodeMirror.fromTextArea($('#codeinput')[0], {
+    		lineNumbers: true,
+			dragDrop: false,
+			autofocus: true
+		});
+
+		//carrega exemplos
 		$('.example').each(function() {
 			var code = $(this).find('code').html(); 
 			Prism.highlightElement($(this).find('code')[0], false);
