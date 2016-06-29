@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/prism.css"  />
 	<link rel="stylesheet" href="css/codemirror.css"  />
@@ -23,10 +24,10 @@
 
 	<section>
 		<h2>Laboratório</h2>
-		<div class="row">
+		<div class="row laboratorio" codeid="aula3">
 			<div class="col-md-5">
 				<div class="form-group">
-					<textarea id="codeinput" class="form-control" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" codeid="aula3">
+					<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 size(360,300);
 fill(0,0,0);
 var x = 30;
@@ -41,14 +42,15 @@ if ( x == 50 ) {
 </textarea>
 				</div>
 				<div class="form-group">
-					<button id="compileButton" class="btn btn-primary btn-block">Executar</button>
+					<button class="btn btn-primary btn-block execute">Executar</button>
 				</div>
-				<div id="messagecontainer" class="alert alert-danger " style="display:none;"></div>
+				<div class="alert alert-danger messagecontainer" style="display:none;"></div>
 			</div>
 			<div class="col-md-7">
-				<canvas id="drawingcanvas"></canvas>
+				<canvas></canvas>
 			</div>
 		</div>
+
 	</section>
 
 	<section>
@@ -162,6 +164,32 @@ if( p_1_1 == p_1_2 && p_1_2 == p_1_3 && p_1_1 == 'X') {
 				<canvas class="hidden"></canvas>
 			</div>
 		</div>
+
+		<div class="laboratorio" codeid="aula3-ex1">
+			<div class="form-group">
+				<label>Faça suas modificações abaixo</label>
+				<textarea class="form-control" rows="30" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">size(600, 400);
+var p_1_1 = ' '; var p_1_2 = ' '; var p_1_3 = ' ';
+var p_2_1 = ' '; var p_2_2 = ' '; var p_2_3 = ' ';
+var p_3_1 = ' '; var p_3_2 = ' '; var p_3_3 = ' ';
+//cenário arbitrário
+p_1_1 = 'X'; p_1_2 = 'X'; p_1_3 = 'X';
+p_2_1 = ' '; p_2_2 = 'O'; p_2_3 = 'O';
+p_3_1 = 'X'; p_3_2 = 'O'; p_3_3 = ' ';
+if( p_1_1 == p_1_2 && p_1_2 == p_1_3 && p_1_1 == 'X') {
+	text('X ganhou', 200, 200);
+} else {
+	text('ninguém ganhou', 200, 200);
+}
+				</textarea>
+			</div>
+			<div class="form-group">
+				<button class="btn btn-primary btn-block execute">Executar</button>
+			</div>
+			<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+			<canvas></canvas>
+		</div>
+
 	</section>
 
 	<section>

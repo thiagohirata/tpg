@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/prism.css"  />
 	<link rel="stylesheet" href="css/codemirror.css"  />
@@ -22,10 +23,10 @@
 
 	<section>
 		<h2>Laboratório</h2>
-		<div class="row">
+		<div class="row laboratorio" codeid="aula2">
 			<div class="col-md-5">
 				<div class="form-group">
-					<textarea id="codeinput" class="form-control" rows="20" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" codeid="aula2">
+					<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 size(360,300);
 var largura = 100;
 var altura = 80;
@@ -34,15 +35,16 @@ largura = largura + 200;
 ellipse(180, 200, largura, altura);</textarea>
 				</div>
 				<div class="form-group">
-					<button id="compileButton" class="btn btn-primary btn-block">Executar</button>
+					<button class="btn btn-primary btn-block execute">Executar</button>
 				</div>
-				<div id="messagecontainer" class="alert alert-danger " style="display:none;"></div>
+				<div class="alert alert-danger messagecontainer" style="display:none;"></div>
 			</div>
 			<div class="col-md-7">
-				<canvas id="drawingcanvas"></canvas>
+				<canvas></canvas>
 			</div>
 		</div>
 	</section>
+
 
 	<section>
 		<h2>Variáveis e operadores</h2>
@@ -115,8 +117,9 @@ rect(posX + 250, 50, lado, lado);
 	<section>		
 		<h2>Exercícios 1 - Escreva um programa que tenha a mesma saída</h2>
 		<div class="row">
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 var l = 40;
 var posX = 50;
 var posY = 50;
@@ -137,24 +140,25 @@ posX += 10;posY += 5;
 rect(posX, posY, l, l);
 posX += 10;posY += 5;
 rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
-posX += 10;posY += 5;
-rect(posX, posY, l, l);
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula2-ex1">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
-			
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 var l = 40;
 var posX = 50;
 var posY = 50;
@@ -180,33 +184,30 @@ rect(posX, posY, l, l);
 posX += delta;posY += delta; l+=delta; gray+= delta;  
 fill(gray);
 rect(posX, posY, l, l);
-posX += delta;posY += delta; l+=delta; gray+= delta;  
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula2-ex2">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
 
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 var posX = 10;
 var posY = 10;
 stroke(255,0,0);
 strokeWeight(3);
 
-posX += 40;
-point(posX, posY);
-text(posX, posX, posY);
-posX += 40;
-point(posX, posY);
-text(posX, posX, posY);
-posX += 40;
-point(posX, posY);
-text(posX, posX, posY);
-posX += 40;
-point(posX, posY);
-text(posX, posX, posY);
-posX += 40;
-point(posX, posY);
-text(posX, posX, posY);
 posX += 40;
 point(posX, posY);
 text(posX, posX, posY);
@@ -228,21 +229,22 @@ text(posY, posX, posY);
 posY += 40;
 point(posX, posY);
 text(posY, posX, posY);
-posY += 40;
-point(posX, posY);
-text(posY, posX, posY);
-posY += 40;
-point(posX, posY);
-text(posY, posX, posY);
-posY += 40;
-point(posX, posY);
-text(posY, posX, posY);
-posY += 40;
-point(posX, posY);
-text(posY, posX, posY);
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula2-ex3">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
+
 		</div>
 	</section>
 	<section>

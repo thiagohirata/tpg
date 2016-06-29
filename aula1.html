@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/prism.css"  />
 	<link rel="stylesheet" href="css/codemirror.css"  />
@@ -23,20 +24,20 @@
 
 	<section>
 		<h2>Laboratório</h2>
-		<div class="row">
+		<div class="row laboratorio" codeid="aula1">
 			<div class="col-md-5">
 				<div class="form-group">
-					<textarea id="codeinput" class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" codeid="aula1">
+					<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
 size(360,300);
 ellipse(180,150,100,80);</textarea>
 				</div>
 				<div class="form-group">
-					<button id="compileButton" class="btn btn-primary btn-block">Executar</button>
+					<button class="btn btn-primary btn-block execute">Executar</button>
 				</div>
-				<div id="messagecontainer" class="alert alert-danger " style="display:none;"></div>
+				<div class="alert alert-danger messagecontainer" style="display:none;"></div>
 			</div>
 			<div class="col-md-7">
-				<canvas id="drawingcanvas"></canvas>
+				<canvas></canvas>
 			</div>
 		</div>
 	</section>
@@ -144,8 +145,9 @@ text('50, 100', 50, 100);
 	<section>		
 		<h2>Exercícios - Escreva o código que tenha a mesma saída</h2>
 		<div class="row">
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 fill(255, 255, 0);     
 ellipse(150,150,150,150);
 fill(0, 0, 0);     
@@ -153,11 +155,24 @@ ellipse(100,130,10,10);
 ellipse(200,130,10,10);
 line(120, 170, 180, 170);
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula1-ex1">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
-			
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 background(180,200,255);
 fill(0,100,0);
 rect(0,180,359,119);
@@ -172,11 +187,24 @@ ellipse(180,80,15,10);
 fill(255,50,0);
 ellipse(180,60,15,15);
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula1-ex2">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
 
-			<div class="col-md-4 example">
-				<pre class="hidden"><code class="language-javascript ">size(360,300);
+			<div class="col-md-4">
+				<div class="example">
+					<pre class="hidden"><code class="language-javascript ">size(360,300);
 strokeWeight(4);
 stroke(0,0,0);
 fill(255, 255, 0);     
@@ -193,12 +221,23 @@ ellipse(230,140,15,15);
 
 text('Hello', 160, 50);
 </code></pre>
-				<canvas></canvas>
+					<canvas></canvas>
+				</div>
+				<div class="laboratorio" codeid="aula1-ex3">
+					<div class="form-group">
+						<label>Digite seu código aqui</label>
+						<textarea class="form-control" rows="16" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"></textarea>
+					</div>
+					<div class="form-group">
+						<button class="btn btn-primary btn-block execute">Executar</button>
+					</div>
+					<div class="alert alert-danger messagecontainer" style="display:none;"></div>
+					<canvas></canvas>
+				</div>
 			</div>
-			
 		</div>
-	</section>
 
+	</section>
 
 	<section>
 		<h2>Referência</h2>
